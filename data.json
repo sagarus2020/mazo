@@ -1,0 +1,13 @@
+{"cartas":[{"numero": "As","carta": "diamantes","valor":0},
+	{"numero": "2","carta": "diamantes","valor":1},
+	{"numero": "3","carta": "corazones","valor":2},
+	{"numero": "4","carta": "corazones","valor":3},
+	{"numero": "5","carta": "corazones","valor":4},
+	{"numero": "6","carta": "trebol","valor":5},
+	{"numero": "7","carta": "diamantes","valor":6},
+	{"numero": "8","carta": "trebol","valor":7},
+	{"numero": "9","carta": "diamantes","valor":8},
+	{"numero": "10","carta": "corazones","valor":9},
+	{"numero": "J","carta": "trebol","valor":10},
+	{"numero": "Q","carta": "espadas","valor":11},
+	{"numero": "K","carta": "diamantes","valor":12}]}
