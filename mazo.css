@@ -1,4 +1,11 @@
-img{
+#carta{
 	max-width: 25%;
 	height: auto;
 	padding: 2%;
+}
+#titleImg{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
