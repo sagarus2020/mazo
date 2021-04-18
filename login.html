@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="mazo.css">
+	<!-- Optional theme -->
+
+
+	
+</head>
+<body>
+	<div class="topnav">
+		<a class="" href="cartas.html">Home</a>
+		<a class="active" id="loginPage" href="">login</a>
+		<div class="login-container">
+			<form action="cartas.html" id="login">
+				<input type="text" placeholder="Username" id="username" name="username">
+				<input type="text" placeholder="Password" id="password" name="psw">
+				<button type="submit" onclick="loginNav()">Login</button>
+			</form>
+			<button  id="out" onclick="logOut()">log out</button>
+		</div>
+	</div>
+	<img src="https://chamberorganizer.com/FulshearKaty/photos/HEAD744980banP.jpg" 
+	alt="2FFreerolls-Poker-Club-108322120869605"
+	id="titleImg">
+
+	<div class="myform form ">
+		<div class="logo mb-3">
+			<div class="col-md-12 text-center">
+				<h1>Login</h1>
+			</div>
+		</div>
+		<form action="cartas.html"  >
+			<div class="form-group">
+				<label for="exampleInputEmail1">User</label>
+				<input type="username" name="email"  class="form-control" id="inputU" aria-describedby="emailHelp" placeholder="Enter email">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">Password</label>
+				<input type="text" name="password" id="inputP"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+			</div>
+
+			<div class="col-md-12 text-center ">
+				<button   class=" btn btn-block mybtn btn-primary tx-tfm" onclick="login()">Login</button>
+			</div>
+
+		</form>
+
+	</div>
+
+	<script type="text/javascript">
+
+		if(window.localStorage.getItem('user')==null)
+		{
+			document.getElementById("login").style.display = "block";
+			document.getElementById("loginPage").style.display = "block";
+			document.getElementById("out").style.display = "none";
+
+		}
+		else
+		{
+			document.getElementById("login").style.display = "none";
+			document.getElementById("loginPage").style.display = "none";
+			document.getElementById("out").style.display = "block";
+		}
+		function loginNav()
+		{
+
+			email=document.getElementById("username");
+			password=document.getElementById("password");
+			if(email.value=="admin"&&password.value==1234)
+			{
+
+				window.localStorage.setItem('user', [{"email":email.value,"password":password.value}]);
+				window.location.href = "cartas.html";
+			}
+			else
+				window.alert("invalid user");
+		}
+		function login()
+		{
+
+			email=document.getElementById("inputU");
+			password=document.getElementById("inputP");
+
+			if(email.value=="admin"&&password.value==1234)
+			{
+				window.localStorage.setItem('user', [{"email":email.value,"password":password.value}]);
+				window.location.href = "cartas.html";
+			}
+			else
+				alert("invalid user");
+		}
+
+		function logOut()
+		{
+			window.localStorage.removeItem('user');
+
+			window.location.href = "login.html";
+
+		}
+
+
+	</script>
+
+</body>
+</html>

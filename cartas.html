@@ -15,9 +15,21 @@
 	
 </head>
 <body>
-<img src="https://chamberorganizer.com/FulshearKaty/photos/HEAD744980banP.jpg" 
-alt="2FFreerolls-Poker-Club-108322120869605"
-id="titleImg">
+	<div class="topnav">
+		<a class="active" >Home</a>
+		<a class="" id="loginPage" href="login.html">login</a>
+		<div class="login-container">
+			<form action="cartas.html" id="login">
+				<input type="text" placeholder="Username" id="username" name="username">
+				<input type="text" placeholder="Password" id="password" name="psw">
+				<button type="submit" onclick="loginNav()">Login</button>
+			</form>
+			<button  id="out" onclick="logOut()">log out</button>
+		</div>
+	</div>
+	<img src="https://chamberorganizer.com/FulshearKaty/photos/HEAD744980banP.jpg" 
+	alt="2FFreerolls-Poker-Club-108322120869605"
+	id="titleImg">
 
 	<div class="container">
 		<div class="row">
@@ -51,7 +63,7 @@ id="titleImg">
 
 			</div>
 			<div class="col-xs-6">	
-					<h1>Listado de cartas</h1>
+				<h1>Listado de cartas</h1>
 				<table class="table table-hover" id="tabla">
 					<thead>
 						<tr>
@@ -67,20 +79,55 @@ id="titleImg">
 			</div>
 
 
-	<h1>Registro de cartas</h1>
-	<p>numero</p>
-	<input type="text" id="numero" textholder="ingrese numero">
-	<p>debe ser un numero del 1 al 13</p>
-	<p>carta</p>
-	<input type="text" id="tipoC" textholder="Descripdion de la carta">
-	<button id="submitC" onclick="añadirCarta()">enviar nueva carta</button>
+			<h1>Registro de cartas</h1>
+			<p>numero</p>
+			<input type="text" id="numero" textholder="ingrese numero">
+			<p>debe ser un numero del 1 al 13</p>
+			<p>carta</p>
+			<input type="text" id="tipoC" textholder="Descripdion de la carta">
+			<button id="submitC" onclick="añadirCarta()">enviar nueva carta</button>
 			<script type="text/javascript">
-				
+
+				if(window.localStorage.getItem('user')==null)
+				{
+					document.getElementById("login").style.display = "block";
+					document.getElementById("loginPage").style.display = "block";
+					document.getElementById("out").style.display = "none";
+
+				}
+				else
+				{
+					document.getElementById("login").style.display = "none";
+					document.getElementById("loginPage").style.display = "none";
+					document.getElementById("out").style.display = "block";
+				}
+				function loginNav()
+				{
+					email=document.getElementById("username");
+					password=document.getElementById("password");
+					if(email.value=="admin"&&password.value==1234)
+					{
+						window.localStorage.setItem('user', [{"email":email.value,"password":password.value}]);
+						window.location.href = "cartas.html";
+					}
+					else
+						window.alert("invalid user");
+				}
+
+				function logOut()
+				{
+					window.localStorage.removeItem('user');
+
+					window.location.href = "login.html";
+
+				}
+
 				function generar(data)
 				{
 					window.localStorage.setItem('general', JSON.stringify(data));
 
 				}
+
 
 				var url = "datos.json";
 				var listadoCartas = fetch(url)
@@ -104,8 +151,8 @@ id="titleImg">
 						{	
 							if(x.mazo[i].numero==inputN.value&&x.mazo[i].carta==inputC.value)
 							{
-							x.mazo[i].valor+=1;
-							return actualizar();
+								x.mazo[i].valor+=1;
+								return actualizar();
 							}
 
 						}	
@@ -145,28 +192,28 @@ id="titleImg">
 				}
 
 				function getObjetoOrdenado(objeto)
-{
-    var aux;
-    for(var i=0 ; i<objeto.mazo.length; i++)
-    {
-        for(var j=i+1 ; j<objeto.mazo.length; j++)
-        {
-            if(objeto.mazo[i].valor > objeto.mazo[j].valor)
-            {
-                aux = objeto.mazo[j]
-                objeto.mazo[j] = objeto.mazo[i]
-                objeto.mazo[i] = aux 
-            }
-        }
-    }
-    return objeto;
-}
+				{
+					var aux;
+					for(var i=0 ; i<objeto.mazo.length; i++)
+					{
+						for(var j=i+1 ; j<objeto.mazo.length; j++)
+						{
+							if(objeto.mazo[i].valor > objeto.mazo[j].valor)
+							{
+								aux = objeto.mazo[j]
+								objeto.mazo[j] = objeto.mazo[i]
+								objeto.mazo[i] = aux 
+							}
+						}
+					}
+					return objeto;
+				}
 				document.addEventListener("click", function displayCarta(event) 
 				{
 					var imgInput=event.target;
 					if(imgInput.id=="carta")
 					{			
-					console.log("paso");			
+						console.log("paso");			
 						for( var k in x.mazo)
 						{	
 							if(x.mazo[k].numero==parseInt(imgInput.dataset.id , 10)&&x.mazo[k].carta==imgInput.dataset.tipo)
